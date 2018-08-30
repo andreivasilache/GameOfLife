@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game Of Life</title>
+
+    <!-- bootstrap file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- css file -->
+    <link rel="stylesheet" href="index.css">
+
+    
+</head>
+<body>
+    <div id="topText">
+            <div>
+                
+                 <h1 class="title">Game of life</h1>
+                 <div id="generation">
+                        <h1 class="generationTitle">Generation: 
+                             <span class="generation"> </span>
+                        </h1>
+                </div>  
+                <button class="btn btn-outline-success" onclick="start()"> >  Start  </button>
+                <button class="btn btn-outline-danger" onclick="stop()" > > Pause </button> 
+                <button class="btn btn-outline-primary" onclick="reset()" > >  Reset </button>
+                <div class="speedInput">
+                    <!-- <input type="text" placeholder="1-Fast , 10-slow"  min="1" max="10" type="number" class="form-control"> -->
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">Speed</span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="1-fast 10-slow" class="speed">
+                            <div class="input-group-append">
+                              <span class="input-group-text">X100</span>
+                            </div>
+                          </div>
+                    <br>
+                </div>
+                <button class="btn btn-outline-secondary" onclick="changeSpeed()">Change speed</button>
+
+                    
+                
+            </div>
+            
+         
+           
+
+    </div>
+   
+
+    <canvas width="1000" height="600" id="canvas"></canvas>
+    
+
+
+
+
+
+   
+ 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
