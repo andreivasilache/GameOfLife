@@ -25,26 +25,74 @@
                 <button class="btn btn-outline-success" onclick="start()"> >  Start  </button>
                 <button class="btn btn-outline-danger" onclick="stop()" > > Pause </button> 
                 <button class="btn btn-outline-primary" onclick="reset()" > >  Reset </button>
-                <div class="speedInput">
-                    <!-- <input type="text" placeholder="1-Fast , 10-slow"  min="1" max="10" type="number" class="form-control"> -->
-                    <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">Speed</span>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="1-fast 10-slow" class="speed">
-                            <div class="input-group-append">
-                              <span class="input-group-text">X100</span>
-                            </div>
-                          </div>
-                    <br>
+                <div class="speedDiv">
+                    <div class="speedInput">
+                        <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Speed</span>
+                                </div>
+                                <input type="number" class="form-control speed"  placeholder="1-fast 10-slow" min="1" max="10" >
+                                
+                              </div>
+                        <br>
+                    </div>
+                    <button class="btn btn-outline-secondary" onclick="changeSpeed()">Change speed</button>
                 </div>
-                <button class="btn btn-outline-secondary" onclick="changeSpeed()">Change speed</button>
+                <div class="cellsDiv">
+                    <div class="cellsInput">
+                        <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text">Cell size:</span>
+                                </div>
+                                <input type="number" class="form-control cells"  placeholder="Values: 10-150" min="1" max="10" >
+                              </div>
+                        <br>
+                    </div>
+                    <button class="btn btn-outline-secondary" onclick="cellsNumber()">Change cells number</button>
+                </div>
 
-                    
+                <button onclick="randomDraw()" class="btn btn-outline-primary randomBtn">Fill the screen with random values</button> <br>
+
+               
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"> Logic  </button>
                 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Logic</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            1)Any live cell with fewer than two live neighbors dies, as if by under population. <br>
+                            2)Any live cell with two or three live neighbors lives on to the next generation. <br>
+                            3)Any live cell with more than three live neighbors dies, as if by overpopulation. <br>
+                            4)Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.  <br>   
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+
+
+
+
+                
+                <h6 class="made">Do you like this project? <br> Visit my  <a href="https://shrouded-shore-30005.herokuapp.com/">portofolio.</a></h6>
+
+               
             </div>
             
-         
+
            
 
     </div>
@@ -52,7 +100,6 @@
 
     <canvas width="1000" height="600" id="canvas"></canvas>
     
-
 
 
 

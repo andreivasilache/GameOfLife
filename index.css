@@ -2,16 +2,15 @@ body{
     background: #200122;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #6f0000, #200122);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #6f0000, #200122); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-
     overflow-x: hidden;
 }
 
 canvas{
     background: black;
-    margin: -22% 20%;
+    margin: -40% 20%;
     border: 1px solid black;
 }
+
 #topText{
     display: -webkit-inline-box;
     padding-left: 10px;
@@ -19,21 +18,41 @@ canvas{
     color: white;
 
 }
+
 .title {
     font-size:30px;
 }
+
 .generationTitle{
     font-size: 15px;
     padding-left: 135px;
 }
+
 #generation{
     font-size: 20px;
 }
 
 .speedInput{
-    width: 72%;
+    width: 100%;
     margin: 20px 0px;
 }
+
 .btn-outline-secondary{
     margin: -40px 0px;
+}
+
+.made{
+    padding-top: 40px;
+}
+
+.cellsInput{
+    padding: 10px 0px;
+}
+
+.randomBtn{
+    margin: 10px 0px;
+}
+
+.modal-body ,.modal-title{
+    color: black;
 }

@@ -14,10 +14,12 @@ var cell;
 var generationOnScreen=0;
 var squareSize=10;
 var semiSquare=squareSize/2;
-var aliveCell="red";
-var deadCell="black";
-var outlineOfCells="white";
+var aliveCell="blue";
+var deadCell="white";
+var outlineOfCells="#f5f5dc";
 var generationSpeed=200;
+
+canvas.addEventListener("mousedown", getPosition, false); // add element listener to canvas 
 
 // get canvas height and width
 var canvasWidth=$("canvas").width();
@@ -35,21 +37,26 @@ for(let i=0;i<rows;i++){
         cell[i]=new Array();
 }
 // ==================================================
-
+// alert user about non-responsive design once
+var alerted = localStorage.getItem('alerted') || '';
+if (alerted != 'yes') {
+ alert("Be aware! This page has not a responsive design! :), also in this project you can find some minor bugs. ");
+ localStorage.setItem('alerted','yes');
+}
 
 // ================ FUNCTIONS =====================
 
 //  first frame of the game
 function main(){
-    // fillRandom();
-    // fill the array with 0 elements (all cells are dead)
-    killCells();
+
+    killCells(); // fill the array with 0 elements (all cells are dead)
     drawSquares();
     
 } main();
  
 // start button function
 function start(){  
+
       frames= setInterval(function(){
         legacy();
         drawSquares();
@@ -65,10 +72,38 @@ function stop(){
     clearInterval(frames);
 
 }
+function randomDraw(){
+    stop();
+    killCells();
+    fillRandom();
+    drawSquares();
+}
+
 function changeSpeed(){
+
      generationSpeed=$(".speed").val()*100;
      stop();
      
+}
+
+function cellsNumber(){
+
+    let inputVal=$(".cells").val()
+    if( inputVal < 10 || inputVal > 150 ){
+        alert("Use coresponded values!");
+    }else{
+        var alertedSize = localStorage.getItem('alertedSize') || '';
+        if (alertedSize != 'yes') {
+        alert(" Not recomanded! (Cells can be drawed outside the screen after a while! ) ");
+        localStorage.setItem('alertedSize','yes');
+        }
+
+        killCells();
+        stop();
+        squareSize=$(".cells").val();
+        drawSquares();
+    }
+ 
 }
 
 function killCells(){
@@ -91,6 +126,7 @@ function reset(){
 
 }
 
+
  // construct the array with random 0 or 1 values 
 function fillRandom(){
    
@@ -99,6 +135,7 @@ function fillRandom(){
 
     for(var i=0;i<rows;i++){
         for(var j=0;j<cols;j++){
+
             var randomNumber=Math.random(); //get a random number
             var intVal=randomNumber*2;  
             var randomBinary=Math.floor(intVal);
@@ -107,6 +144,7 @@ function fillRandom(){
             }else{
                 cell[i][j]=0;
             }
+
         }
     }
 }
@@ -117,24 +155,36 @@ function drawSquares(){
     for(var m=0;m<rows;m++){  // m <  width of the page 
         for(var n=0;n<cols;n++){ // n< height of the page
             if(cell[m][n] === 1){
-                // draw square
-                ctx.fillStyle=aliveCell;
-                ctx.fillRect(m*squareSize,n*squareSize,squareSize,squareSize);
-                // draw outline
-                ctx.strokeRect(m*squareSize,n*squareSize,squareSize,squareSize);
-                ctx.strokeStyle = outlineOfCells;
+
+                paint(m,n,"aliveCell");
 
             }else{
-                // draw square
-                ctx.fillStyle=deadCell;
-                ctx.fillRect(m*squareSize,n*squareSize,squareSize,squareSize);
-                // draw outline
-                ctx.strokeRect(m*squareSize,n*squareSize,squareSize,squareSize);
-                ctx.strokeStyle = outlineOfCells;
+
+                paint(m,n,"deadCell");
+
             }
         }
     }
 }
+
+function paint(x,y,state){
+    var status=state;
+    if(state == "aliveCell" ){
+                // draw square
+                ctx.fillStyle=aliveCell;
+        ctx.fillRect(x*squareSize,y*squareSize,squareSize,squareSize);
+                // draw outline
+        ctx.strokeRect(x*squareSize,y*squareSize,squareSize,squareSize);
+                ctx.strokeStyle = outlineOfCells;
+            }else{
+                // draw square
+                ctx.fillStyle=deadCell;
+        ctx.fillRect(x*squareSize,y*squareSize,squareSize,squareSize);
+                // draw outline
+        ctx.strokeRect(x*squareSize,y*squareSize,squareSize,squareSize);
+                ctx.strokeStyle = outlineOfCells;
+            }
+        }
 
 function checkNeighborsNum(arr,i,j){ // check number of alive neighbors
 
@@ -178,10 +228,10 @@ function legacy(){
 
 
 // on input click function
-// add element listener to canvas 
-canvas.addEventListener("mousedown", getPosition, false);
+
 
 function getPosition(event){
+
     stop();
     var x = new Number();
     var y = new Number();
@@ -200,15 +250,17 @@ function getPosition(event){
     x -= canvas.offsetLeft;
     y -= canvas.offsetTop;
 
-    // x and y now are numbers that need to be rounded to half of square size (for click-square precision)
-    console.log("Primitive values "+x,y);
-    console.log("Rounded values: "+Math.ceil(x / squareSize) * squareSize,Math.ceil(y / squareSize) * squareSize );
-    drawOnClick(Math.round(x / squareSize) * squareSize,Math.round(y / squareSize) * squareSize); //sent the values on %10=0
+    // x and y now are numbers that needs to be rounded to square-size
+    drawOnClick(Math.floor(x / squareSize) * squareSize,Math.floor(y / squareSize) * squareSize); //sent the values on %10=0
 
 }
 
   function drawOnClick(x,y){
+
     cell[x/squareSize][y/squareSize]=1; // squareSize = 1 cell 
+
+    // use this insted of paint function
+
     // draw square
     ctx.fillStyle=aliveCell;
     ctx.fillRect(x,y,squareSize,squareSize);
