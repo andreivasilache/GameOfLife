@@ -10,7 +10,7 @@ Any dead cell with exactly three live neighbors becomes a live cell, as if by re
 Short explanation of code: We are itterating every cell, and we are checking his active neighbors, if we have a specific number of active 
 neighbors , we are changing the status of cell,by the above rules.
 
-In development I used: Html, Css, JavaScript, Bootstrap. <br>
+In development I used: Html, Css, JavaScript, Bootstrap, Html Canvas. <br>
 
 App Link: http://vasilache-andrei.herokuapp.com/gameOfLife
 
