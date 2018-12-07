@@ -14,7 +14,7 @@ In development I used: Html, Css, JavaScript, Bootstrap, Html Canvas. <br>
 
 App Link: http://vasilache-andrei.herokuapp.com/gameOfLife
 
-Portofolio: http://vasilache-andrei.herokuapp.com/
+Portfolio: http://vasilache-andrei.herokuapp.com/
 
 
 <img src="http://vasilache-andrei.herokuapp.com/portofolioGifs/gameOfLife.gif">
